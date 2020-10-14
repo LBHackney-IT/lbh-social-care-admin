@@ -1,0 +1,12 @@
+{% extends "./layouts/base.njk" %}
+
+{% from "partials/error__404.njk" import PageNotFoundContent %}
+{% from "partials/error__5xx.njk" import ServerErrorContent %}
+
+{% block content %}
+    {% if error.is404 %}
+        {{ PageNotFoundContent() }}
+    {% else %}
+        {{ ServerErrorContent(error) }}
+    {% endif %}
+{% endblock %}

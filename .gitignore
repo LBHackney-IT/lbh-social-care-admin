@@ -1,0 +1,12 @@
+node_modules/
+npm-debug.log
+.DS_Store
+preview/
+tmp/
+axeReports/
+*.zip
+sassdoc/
+.env
+cypress/screenshots/**
+cypress/videos/**
+.idea

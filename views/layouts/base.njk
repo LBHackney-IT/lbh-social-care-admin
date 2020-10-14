@@ -1,0 +1,40 @@
+{% extends "template.njk" %}
+{% from "lbh-back-to-top/macro.njk" import lbhBackToTop %}
+
+{% block head %}
+  {% if GA_UA %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_UA }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ GA_UA }}');
+    </script>
+  {% endif %}
+
+   <link rel="stylesheet" type="text/css" href="/app.css">
+{% endblock %}
+
+
+{% block pageTitle %}Social Care | Hackney Council{% endblock %}
+
+{% block header %}
+  {{lbhHeader({
+    isHome: false,
+    serviceName: "Social Care Admin"
+  })}}
+{% endblock %}
+
+{% block beforeContent %}
+<div id="loader_overlay" class="">
+  <div id="loader_spinner"></div>
+</div>
+{% endblock %}
+
+{% block bodyEnd %}
+  {{ lbhBackToTop({
+    "topLink": "#top"
+  }) }}
+
+  <script src="/main.js"></script>
+{% endblock %}

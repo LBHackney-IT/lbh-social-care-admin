@@ -1,0 +1,192 @@
+@import "node_modules/lbh-frontend/lbh/core/all";
+@import "node_modules/lbh-frontend/lbh/objects/all";
+@import "node_modules/lbh-frontend/lbh/helpers/colour";
+@import "node_modules/lbh-frontend/lbh/components/lbh-accordion/accordion";
+@import "node_modules/lbh-frontend/lbh/components/lbh-back-link/back-link";
+@import "node_modules/lbh-frontend/lbh/components/lbh-back-to-top/back-to-top";
+@import "node_modules/lbh-frontend/lbh/components/lbh-button/button";
+@import "node_modules/lbh-frontend/lbh/components/lbh-checkboxes/checkboxes";
+@import "node_modules/lbh-frontend/lbh/components/lbh-date-input/date-input";
+@import "node_modules/lbh-frontend/lbh/components/lbh-error-summary/error-summary";
+@import "node_modules/lbh-frontend/lbh/components/lbh-fieldset/fieldset";
+@import "node_modules/lbh-frontend/lbh/components/lbh-header/header";
+@import "node_modules/lbh-frontend/lbh/components/lbh-input/input";
+@import "node_modules/lbh-frontend/lbh/components/lbh-label/label";
+@import "node_modules/lbh-frontend/lbh/components/lbh-panel/panel";
+@import "node_modules/lbh-frontend/lbh/components/lbh-radios/radios";
+@import "node_modules/lbh-frontend/lbh/components/lbh-select/select";
+@import "node_modules/lbh-frontend/lbh/components/lbh-skip-link/skip-link";
+@import "node_modules/lbh-frontend/lbh/components/lbh-table/table";
+@import "node_modules/lbh-frontend/lbh/components/lbh-tag/tag";
+@import "node_modules/lbh-frontend/lbh/components/lbh-tabs/tabs";
+@import "node_modules/lbh-frontend/lbh/components/lbh-textarea/textarea";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+html.lbh-template > body.lbh-template__body * {
+  font-family: 'Open Sans', sans-serif;
+}
+#address-lookup-fieldset {
+  display: none;
+
+  .js-enabled & {
+    display: block;
+  }
+}
+
+.note-container {
+  .note-header {
+    font-weight: bold;
+  }
+  .note-date {
+    color: #626a6e;
+  }
+  background-color: #f3f3f3;
+  margin-bottom: 20px;
+  padding: 1em;
+}
+
+
+.row-margin-top-s {
+  margin-top: 20px !important;
+}
+.row-margin-top-m {
+  margin-top: 40px !important;
+}
+.row-margin-top-l {
+  margin-top: 60px !important;
+}
+
+.lbh-form-group {
+  label {
+    font-weight: 300 !important;
+  }
+}
+#address-manual-fieldset {
+  display: none;
+}
+
+#building_number {
+  display: none;
+}
+
+.govuk-fieldset {
+  margin-top: 50px;
+}
+
+
+.govuk-accordion {
+  &__section-header {
+    background-color: #f8f8f8;
+    padding-left: 20px;
+
+    &.is-master {
+      background-color: lbh-colour("lbh-a03");
+    }
+    
+    &.is-duplicate {
+      background-color: lbh-colour("lbh-h04");
+    }
+    
+    &.is-exception {
+      background-color: lbh-colour("lbh-f04");
+    }
+  }
+
+  &__section {
+    margin-bottom: 15px;
+  }
+}
+.lbh-heading-h1 {
+  margin-top: 0.5em !important;
+}
+.lbh-tag {
+  padding: 8px 24px;
+  font-weight: 700;
+  color: lbh-colour("lbh-text");
+
+  &.is-master {
+    background: lbh-colour("lbh-a03");
+  }
+  
+  &.is-duplicate {
+    background: lbh-colour("lbh-h04");
+  }
+  
+  &.is-exception {
+    background: lbh-colour("lbh-f04");
+  }
+}
+
+#what_coronavirus_help,
+#current_support {
+  @include govuk-media-query($from: tablet) {
+    column-count: 2;
+  }
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+input[readonly],
+textarea[readonly] {
+  border-width: 0;
+  background-color: lbh-colour("lbh-grey-4");
+}
+
+.js-enabled {
+
+  .govuk-accordion {
+    border-bottom: none;
+
+    &__section-header {
+      border-top: none;
+      border-bottom: 1px solid lbh-colour("lbh-grey-2");
+    }
+  }
+}
+
+
+#loader_overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  opacity: 0;
+  z-index: -1;
+
+  .is-loading & {
+    opacity: .85;
+    z-index: 100;
+  }
+}
+
+#loader_spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid lbh-colour("lbh-link");
+  border-bottom: 16px solid lbh-colour("lbh-link");
+  width: 120px;
+  height: 120px;
+  animation: loader_spin 2s linear infinite;
+}
+
+@-webkit-keyframes loader_spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes loader_spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

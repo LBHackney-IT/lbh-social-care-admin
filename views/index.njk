@@ -1,0 +1,26 @@
+{% from 'lbh-input/macro.njk' import lbhInput %}
+{% from 'lbh-fieldset/macro.njk' import lbhFieldset %}
+
+{% extends "./layouts/base.njk" %}
+
+{% block content %}
+
+  <h1 class="lbh-heading-h1">Interim Social Care Admin</h1>
+
+  <table class="govuk-table lbh-table">
+    <tbody class="govuk-table__body">
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">View my records</th>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          <a href="/my-records" class="govuk-button lbh-button" data-module="govuk-button">Go</a>
+        </td>
+      </tr>
+      <tr class="govuk-table__row">
+        <th scope="row" class="govuk-table__header">Search records</th>
+        <td class="govuk-table__cell govuk-table__cell--numeric">
+          <a href="/search" class="govuk-button lbh-button js-cta-btn" data-module="govuk-button">Go</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

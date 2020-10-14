@@ -1,0 +1,27 @@
+{% from 'lbh-button/macro.njk' import lbhButton %}
+{% from 'lbh-radios/macro.njk' import lbhRadios %}
+{% from "lbh-back-link/macro.njk" import lbhBackLink %}
+
+{# Import records list partial here #}
+
+{% extends "../layouts/base.njk" %}
+
+{% block content %}
+<div id="top">
+    {{ lbhBackLink({
+        "href": "/",
+        "text": "Back"
+    }) }}
+
+    {% if data | length %}
+        <h2 class="lbh-heading-h2">Records created by : {{data}}</h2>
+
+        <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
+
+        {# Insert records list partial here #}
+
+    {% else %}
+        <h3 class="lbh-heading-h3">No records found</h3>
+    {% endif %}
+</div>
+{% endblock %}

@@ -8,4 +8,4 @@ Then run:
 
 `npm start`
 
-And when prompted visit `localhost:9000` in your browser.
+And when prompted visit `localhost:5000` in your browser.

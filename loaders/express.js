@@ -9,10 +9,8 @@ const cookieParser = require('cookie-parser');
 
 const config = require('../config');
 const indexRoutes = require('../routes/index.route');
-// const foodRequestsRoutes = require('../routes/food-requests/food_requests.route');
-// const deliverySchedulesRoutes = require('../routes/food-requests/delivery_schedules.route');
-// const exceptionsRoutes = require('../routes/food-requests/exceptions.route');
-// const helpRequestsRoutes = require('../routes/help-requests/help_requests.route');
+const socialCareRoutes = require('../routes/social-care.route');
+
 
 const logger = require('../middleware/logger');
 const { handleError } = require('../helpers/error');
@@ -81,10 +79,8 @@ module.exports = {
         // Route Handlers
         //-------------------------
 
-        // app.use('/food-requests', foodRequestsRoutes);
-        // app.use('/food-requests/delivery-schedules', deliverySchedulesRoutes);
-        // app.use('/food-requests/exceptions', exceptionsRoutes);
-        // app.use('/help-requests', helpRequestsRoutes);
+        app.use('/socialcare', socialCareRoutes);
+
 
         app.use('/', indexRoutes);
 

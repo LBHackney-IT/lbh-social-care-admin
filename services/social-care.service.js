@@ -33,4 +33,34 @@ class SocialCareService {
         }
     }
 
+
+    /**
+     * @description Search resident records
+     * @param params [object}
+     * @returns {Promise<*>}
+     */
+
+    async searchResidentRecords(params) {
+
+        try {
+            let data = [];
+
+            await SocialCareModel.getResidentRecords(params)
+            .then ( (result) => {
+                data = result.data || [];
+
+                data.forEach(item => {
+                    // const formattedCreationDate = dateHelper.convertDate(item.DateTimeRecorded);
+
+                    // item.creation_date = formattedCreationDate.concatenated;
+                });
+            });
+
+            return data;
+            
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
 }

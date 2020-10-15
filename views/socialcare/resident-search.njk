@@ -109,7 +109,7 @@
                   }
               ],
               "formGroup": {
-                  "classes": "govuk-form-group--error lbh-form-group" if query.error_dob_day or query.error_dob_month or query.error_dob_year else ''
+                  "classes": "govuk-form-group--error lbh-form-group" if query.haserrors else ''
               },
               "errorMessage": {
                   "text": "Enter a valid date"

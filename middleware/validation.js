@@ -20,7 +20,10 @@ const searchResidentValidation = [
     [
       check('mosaicId').notEmpty(),
       check('firstName').notEmpty(),
-      check('lastName').notEmpty()
+      check('lastName').notEmpty(),
+      check('dob_day').notEmpty(),
+      check('dob_month').notEmpty(),
+      check('dob_year').notEmpty()
     ], 'Enter at least Mosiac Id, name or date of birth')
 ]
 

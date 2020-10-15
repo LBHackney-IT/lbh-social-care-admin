@@ -44,6 +44,40 @@ class SocialCareModel {
     }
 
 
+    /**
+     * @description Fetch all resident records
+     * @param params {object} 
+     * @returns {Promise<*>}
+     */
+    async getResidentRecords(params) {
+        try {
+            let data = [];
+
+            const headers = {
+                "Content-Type": "application/json",
+                "x-api-key": config.social_care_records_api_key
+            };
+
+            await axios.get(config.social_care_records_api_url, {
+                headers: headers,
+                params: params
+            }).then ( result => {
+                data = result;
+            }).catch(err => {
+                data = handleAPIErrors(err, 'Axios catch Error at SocialCareModel: getMResidentRecords())');
+                data.isError = true;
+            });
+
+            return data;
+
+        } catch (err) {
+            console.log('SocialCareModel: getMResidentRecords() ERR');
+            console.log(err);
+            return (err);
+        }
+    }
+
+
 
 }
 

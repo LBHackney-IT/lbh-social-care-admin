@@ -1,4 +1,5 @@
 {% from 'lbh-input/macro.njk' import lbhInput %}
+{% from "lbh-date-input/macro.njk" import lbhDateInput %}
 {% from "lbh-back-link/macro.njk" import lbhBackLink %}
 {% from "lbh-error-summary/macro.njk" import lbhErrorSummary %}
 {% extends "../layouts/base.njk" %}
@@ -10,7 +11,7 @@
   }) }}
 
   <h1 class="lbh-heading-h1">Resident lookup</h1>
-  <p class="lbh-body-m">Search for resident by postcode <strong>or</strong> name to see if we have a record for them.</p>
+  <p class="lbh-body-m">Search for resident by Mosaic Id, <strong>or</strong> name, <strong>or</strong> Date of Birth to see if we have a record for them.</p>
 
  {% if query.haserrors %}
     {{ lbhErrorSummary({
@@ -20,24 +21,24 @@
     }) }}
  {% endif %}
 
-  <form action="/resident-search" method="post">
+  <form action="/socialcare/resident-search" method="post">
 
     <div class="govuk-grid-row row-margin-top-m">
         <div class="govuk-grid-column-one-third">
 
-         <label class="govuk-label" for="postcode">Postcode</label>
+         <label class="govuk-label" for="postcode">Mosaic Id</label>
 
           {{ lbhInput({
-            "id": "postcode",
-            "name": "postcode",
-            "value": query.postcode,
+            "id": "mosaicId",
+            "name": "mosaicId",
+            "value": query.mosaicId,
             "classes": "govuk-input--width-10",
             "formGroup": {
               "classes": "govuk-form-group--error lbh-form-group" if query.haserrors else ''
             },
             "errorMessage": {
-              "text": query.error_postcode
-            } if query.error_postcode else null
+              "text": query.error_mosaicId
+            } if query.error_mosaicId else null
           }) }}
 
         </div>
@@ -62,8 +63,7 @@
         </div>
 
         <div class="govuk-grid-column-one-third">
-
-         <label class="govuk-label" for="lastName">Last name</label>
+          <label class="govuk-label" for="lastName">Last name</label>
 
           {{ lbhInput({
             "id": "lastName",
@@ -77,9 +77,46 @@
               "text": query.error_lastName
             } if query.error_lastName else null
           }) }}
-
         </div>
 
+    </div>
+
+    <div class="govuk-grid-row row-margin-top-m">
+      <div class="govuk-grid-column-one-third">
+        <label class="govuk-label">Date of birth</label>
+          {{ lbhDateInput({
+              "items": [
+                  {
+                  "id": "dob_day",
+                  "name": "dob_day",
+                  "label": "Day",
+                  "classes": "govuk-input--width-2 " + ("govuk-input--error" if query.error_dob_day else ''),
+                  "value": query.dob_day
+                  },
+                  {
+                  "id": "dob_month",
+                  "name": "dob_month",
+                  "label": "Month",
+                  "classes": "govuk-input--width-2 " + ("govuk-input--error" if query.error_dob_month else ''),
+                  "value": query.dob_month
+                  },
+                  {
+                  "id": "dob_year",
+                  "name": "dob_year",
+                  "label": "Year",
+                  "classes": "govuk-input--width-4 " + ("govuk-input--error" if query.error_dob_year else ''),
+                  "value": query.dob_year
+                  }
+              ],
+              "formGroup": {
+                  "classes": "govuk-form-group--error lbh-form-group" if query.haserrors else ''
+              },
+              "errorMessage": {
+                  "text": "Enter a valid date"
+              } if query.error_dob-day or query.error_dob-month or query.error_dob-year else null
+          }) }}
+
+      </div>
     </div>
     <button class="govuk-button lbh-button js-cta-btn" data-module="govuk-button">
       Search

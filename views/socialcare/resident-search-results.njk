@@ -1,8 +1,6 @@
 {% from 'lbh-button/macro.njk' import lbhButton %}
 {% from "lbh-back-link/macro.njk" import lbhBackLink %}
 
-{# Import records list partial here #}
-
 {% extends "../layouts/base.njk" %}
 
 {% block content %}
@@ -14,9 +12,7 @@
 
     <h1 class="lbh-heading-h1">Search results</h1>
 
-    {% if helpRequestsData | length %}
-        <h2 class="lbh-heading-h2">Records matching postcode: {{postcode}}</h2>
-
+    {% if data | length %}
         <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
 
         <div class="govuk-grid-row">
@@ -24,12 +20,44 @@
               {{ lbhButton({
                   text: "New search",
                   isSecondary: true,
-                  href: "/search"
+                  href: "/socialcare/resident-search"
               })}}
           </div>
         </div>
 
-        {# Insert records list partial here #}
+        <table class="govuk-table lbh-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Date of Event</th>
+                <th scope="col" class="govuk-table__header">Name of Client</th>
+                <th scope="col" class="govuk-table__header">Email of Worker</th>
+                <th scope="col" class="govuk-table__header">Type of Record</th>
+                <th scope="col" class="govuk-table__header"></th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for item in data %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            {{item.eventDate}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.clientName}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.workerEmail}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.recordType}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            <a href="" class="js-cta-btn" id="view-record-{{item.Id}}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
 
     {% else %}
         <h3 class="lbh-heading-h3">No records found</h3>

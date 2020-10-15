@@ -1,0 +1,11 @@
+{% macro UserNav(data) %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <p class="lbh-body-s text-align-right">
+            <span class="lbh-!-font-weight-bold">Logged in as: </span>
+            {{data.userName}}
+            <a href="/logout" class="lbh-link">Logout</a>
+        </p>
+    </div>
+</div>
+{% endmacro %}

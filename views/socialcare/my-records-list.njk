@@ -2,8 +2,6 @@
 {% from 'lbh-radios/macro.njk' import lbhRadios %}
 {% from "lbh-back-link/macro.njk" import lbhBackLink %}
 
-{# Import records list partial here #}
-
 {% extends "../layouts/base.njk" %}
 
 {% block content %}
@@ -14,11 +12,43 @@
     }) }}
 
     {% if data | length %}
-        <h2 class="lbh-heading-h2">Records created by : {{data}}</h2>
+        <h2 class="lbh-heading-h2">Records created by : {{ userEmail }}</h2>
 
         <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
 
-        {# Insert records list partial here #}
+        <table class="govuk-table lbh-table">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Time Added</th>
+                <th scope="col" class="govuk-table__header">Name of Client</th>
+                <th scope="col" class="govuk-table__header">Date of Event</th>
+                <th scope="col" class="govuk-table__header">Type of Record</th>
+                <th scope="col" class="govuk-table__header"></th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for item in data %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            {{item.timeAdded}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.clientName}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.eventDate}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.recordType}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            <a href="" class="js-cta-btn" id="view-record-{{item.Id}}">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
 
     {% else %}
         <h3 class="lbh-heading-h3">No records found</h3>

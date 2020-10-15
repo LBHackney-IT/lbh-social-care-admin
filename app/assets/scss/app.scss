@@ -1,5 +1,6 @@
 @import "node_modules/lbh-frontend/lbh/core/all";
 @import "node_modules/lbh-frontend/lbh/objects/all";
+@import "node_modules/lbh-frontend/lbh/overrides/all";
 @import "node_modules/lbh-frontend/lbh/helpers/colour";
 @import "node_modules/lbh-frontend/lbh/components/lbh-accordion/accordion";
 @import "node_modules/lbh-frontend/lbh/components/lbh-back-link/back-link";
@@ -24,13 +25,6 @@
 
 html.lbh-template > body.lbh-template__body * {
   font-family: 'Open Sans', sans-serif;
-}
-#address-lookup-fieldset {
-  display: none;
-
-  .js-enabled & {
-    display: block;
-  }
 }
 
 .note-container {
@@ -117,12 +111,6 @@ html.lbh-template > body.lbh-template__body * {
   }
 }
 
-#what_coronavirus_help,
-#current_support {
-  @include govuk-media-query($from: tablet) {
-    column-count: 2;
-  }
-}
 
 .text-align-right {
   text-align: right;

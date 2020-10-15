@@ -1,12 +1,14 @@
 {% from 'lbh-input/macro.njk' import lbhInput %}
 {% from 'lbh-fieldset/macro.njk' import lbhFieldset %}
+{% from 'partials/userNav.njk' import UserNav %}
 
 {% extends "./layouts/base.njk" %}
 
 {% block content %}
-
+  
+  {{ UserNav({userName: "Jayson Hunter"}) }}
   <h1 class="lbh-heading-h1">Interim Social Care Admin</h1>
-
+  
   <table class="govuk-table lbh-table">
     <tbody class="govuk-table__body">
       <tr class="govuk-table__row">

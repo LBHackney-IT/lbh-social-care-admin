@@ -15,9 +15,6 @@
    <link rel="stylesheet" type="text/css" href="/app.css">
 {% endblock %}
 
-
-{% block pageTitle %}Interim Social Care Admin | Hackney Council{% endblock %}
-
 {% block header %}
   {{lbhHeader({
     isHome: false,
@@ -25,10 +22,12 @@
   })}}
 {% endblock %}
 
+{% block pageTitle %}Interim Social Care Admin | Hackney Council{% endblock %}
+
 {% block beforeContent %}
-<div id="loader_overlay" class="">
-  <div id="loader_spinner"></div>
-</div>
+  <div id="loader_overlay" class="">
+    <div id="loader_spinner"></div>
+  </div>
 {% endblock %}
 
 {% block bodyEnd %}

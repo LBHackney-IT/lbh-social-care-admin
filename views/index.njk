@@ -5,8 +5,8 @@
 {% extends "./layouts/base.njk" %}
 
 {% block content %}
+  {{ UserNav( userName ) }}
   
-  {{ UserNav({userName: "Jayson Hunter"}) }}
   <h1 class="lbh-heading-h1">Interim Social Care Admin</h1>
   
   <table class="govuk-table lbh-table">

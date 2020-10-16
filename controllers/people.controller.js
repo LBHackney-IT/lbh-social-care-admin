@@ -59,7 +59,7 @@ module.exports = {
                 .then(result => {
                     data = result;
 
-                    return res.render('people/people-search-results.njk', {data: data});
+                    return res.render('people/people-search-results.njk', {userName: req.auth.userName, data: data});
                 }) 
 
             } catch (err) {

@@ -8,6 +8,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require('cookie-parser');
 
 const config = require('../config');
+const authRoutes = require('../routes/auth.route');
 const indexRoutes = require('../routes/index.route');
 const peopleRoutes = require('../routes/people.route');
 const casesRoutes = require('../routes/cases.route');
@@ -81,6 +82,7 @@ module.exports = {
 
         app.use('/people', peopleRoutes);
         app.use('/cases', casesRoutes);
+        app.use('/logout', authRoutes);
 
 
         app.use('/', indexRoutes);

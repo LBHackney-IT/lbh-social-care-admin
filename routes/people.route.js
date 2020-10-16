@@ -11,7 +11,7 @@ router.get('/search', isAuthorised, function(req, res) {
     res.locals.query = req.query;
     res.locals.isAdmin = req.auth.isAdmin;
 
-    res.render("people/people-search.njk");
+    res.render("people/people-search.njk", {userName: req.auth.userName});
 });
 
 

@@ -8,10 +8,9 @@ module.exports = {
      * @returns {Promise<*>}
      */
     index_get: async (req, res, next) => {
-
         try {
             
-            return res.render("index.njk");                
+            return res.render("index.njk", {userName: req.auth.userName});                
 
         } catch (err) {
             const error = new Error(err);

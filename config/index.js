@@ -9,6 +9,7 @@ module.exports = {
     protocol: process.env.PROTOCOL,
     local: process.env.LOCAL,
     local_user_name: process.env.LOCAL_USER_NAME,
+    local_user_email: process.env.LOCAL_USER_EMAIL,
     local_is_admin: process.env.LOCAL_IS_ADMIN || false,
     ga_ua: process.env.GA_UA,
 
@@ -19,6 +20,7 @@ module.exports = {
     
     authorised_admin_group: process.env.AUTHORISED_ADMIN_GROUP,
     token_name: process.env.TOKEN_NAME,
+    token_domain: process.env.TOKEN_DOMAIN,
     hackney_jwt_secret: process.env.HACKNEY_JWT_SECRET,
 
     winston: {

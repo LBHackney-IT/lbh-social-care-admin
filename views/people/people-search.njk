@@ -2,9 +2,12 @@
 {% from "lbh-date-input/macro.njk" import lbhDateInput %}
 {% from "lbh-back-link/macro.njk" import lbhBackLink %}
 {% from "lbh-error-summary/macro.njk" import lbhErrorSummary %}
+{% from 'partials/userNav.njk' import UserNav %}
 {% extends "../layouts/base.njk" %}
 
 {% block content %}
+{{ UserNav( userName ) }}
+
   {{ lbhBackLink({
     "href": "/",
     "text": "Back"

@@ -1,9 +1,12 @@
 {% from 'lbh-button/macro.njk' import lbhButton %}
 {% from "lbh-back-link/macro.njk" import lbhBackLink %}
+{% from 'partials/userNav.njk' import UserNav %}
 
 {% extends "../layouts/base.njk" %}
 
 {% block content %}
+{{ UserNav( userName ) }}
+
 <div id="top">
     {{ lbhBackLink({
         "href": "/",

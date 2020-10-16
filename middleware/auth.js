@@ -7,16 +7,17 @@ const isAuthorised = (req, res, next) => {
 
   // If on local environment, bypass authentication, 
   // get username from config and set Admin permission
-  if(config.local) {
+  if(config.local == 'true')  {
     req.auth = {
-      name: config.local_user_name,
+      userName: config.local_user_name,
+      userEmail: config.local_user_email,
       isAdmin: config.local_is_admin === 'true' ? true : false
     }
 
     return next();
   };
 
-  res.locals.returnURL = req.protocol + '://' + req.hostname;
+  res.locals.returnURL = req.protocol + '://' + req.hostname + (config.port && `:${config.port}`);
 
   if (token) {
     let payload = null;
@@ -28,7 +29,8 @@ const isAuthorised = (req, res, next) => {
       const groups = payload.groups;
 
       req.auth = {
-        name: payload.name,
+        userName: payload.name,
+        userEmail: payload.email,
         isAdmin: false
       }
 
@@ -45,7 +47,9 @@ const isAuthorised = (req, res, next) => {
 
         if (isAuthorised) {
           return next();
-        }        
+        } else {
+          return accessDenied(req, res, next);
+        }    
       }
 
     } catch (err) {
@@ -72,7 +76,43 @@ const isAdmin = (req, res, next) => {
   return res.status(401).render("access-denied.njk");
 }
 
+
+// Used by the routes to determine if a user is an Admin
+const getUserProps = (req, res, next) => {
+  return req.auth;
+}
+
+const logout = (req, res, next) => {
+  const token = req.cookies[config.token_name];
+
+  if (token) {
+    res.clearCookie(config.token_name, { 
+      path: "/",
+      domain: config.token_domain,
+    });
+  }
+
+  return res.status(401).redirect("/");
+
+}
+
+const accessDenied = (req, res, next) => {
+  const token = req.cookies[config.token_name];
+
+  if (token) {
+    res.clearCookie(config.token_name, { 
+      path: "/",
+      domain: config.token_domain,
+    });
+  }
+
+  return res.status(401).render("access-denied.njk");
+
+}
+
 module.exports = {
   isAuthorised,
-  isAdmin
+  isAdmin,
+  getUserProps,
+  logout
 };

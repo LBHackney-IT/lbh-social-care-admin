@@ -35,17 +35,18 @@ module.exports = {
         try {
             let data = [];
 
-            // get user email address
-            const userEmail = 'jayson.hunter@hackney.gov.uk';
-
             /**
              * @param officer_email: string - email address of logged in user
              */
-            await CasesService.getCaseRecords({ officer_email: userEmail })
+            await CasesService.getCaseRecords({ officer_email: req.auth.userEmail })
             .then(result => {
                 data = result;
 
-                return res.render('cases/user-cases-list.njk', {userEmail: userEmail, data: data});
+                return res.render('cases/user-cases-list.njk', {
+                    userName: req.auth.userName,
+                    userEmail: req.auth.userEmail, 
+                    data: data
+                });
             }) 
 
         } catch (err) {
@@ -74,7 +75,11 @@ module.exports = {
 
                 const personFullName = `${data[0].firstName} ${data[0].lastName}`;
 
-                return res.render('cases/person-cases-list.njk', {personFullName: personFullName, data: data});
+                return res.render('cases/person-cases-list.njk', {
+                    userName: req.auth.userName,
+                    userEmail: req.auth.userEmail, 
+                    data: data
+                });
             }) 
 
         } catch (err) {

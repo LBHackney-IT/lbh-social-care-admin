@@ -1,5 +1,4 @@
 {% from 'lbh-button/macro.njk' import lbhButton %}
-{% from 'lbh-radios/macro.njk' import lbhRadios %}
 {% from "lbh-back-link/macro.njk" import lbhBackLink %}
 
 {% extends "../layouts/base.njk" %}
@@ -12,11 +11,11 @@
     }) }}
 
     {% if data | length %}
-        <h2 class="lbh-heading-h2">Records created by : {{ userEmail }}</h2>
+        <h1 class="lbh-heading-h1">Records for {{ personFullName }}</h1>
 
         <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
 
-        <table class="govuk-table lbh-table">
+        <table class="govuk-table lbh-table row-margin-top-l">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Time Added</th>
@@ -33,16 +32,16 @@
                             {{item.timeAdded}}
                         </td>
                         <td class="govuk-table__cell">
-                            {{item.clientName}}
+                            {{item.data.name}}
                         </td>
                         <td class="govuk-table__cell">
                             {{item.eventDate}}
                         </td>
                         <td class="govuk-table__cell">
-                            {{item.recordType}}
+                            {{item.formName}}
                         </td>
                         <td class="govuk-table__cell">
-                            <a href="" class="js-cta-btn" id="view-record-{{item.Id}}">View</a>
+                            <a href="/{{item.formUrl}}" target="_blank">View</a>
                         </td>
                     </tr>
                 {% endfor %}

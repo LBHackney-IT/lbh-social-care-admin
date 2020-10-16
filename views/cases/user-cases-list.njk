@@ -1,0 +1,56 @@
+{% from 'lbh-button/macro.njk' import lbhButton %}
+{% from "lbh-back-link/macro.njk" import lbhBackLink %}
+
+{% extends "../layouts/base.njk" %}
+
+{% block content %}
+<div id="top">
+    {{ lbhBackLink({
+        "href": "/",
+        "text": "Back"
+    }) }}
+
+    {% if data | length %}
+        <h1 class="lbh-heading-h2">Records created by : {{ userEmail }}</h1>
+
+        <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
+
+        <table class="govuk-table lbh-table row-margin-top-l">
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header">Time Added</th>
+                <th scope="col" class="govuk-table__header">Name of Client</th>
+                <th scope="col" class="govuk-table__header">Date of Event</th>
+                <th scope="col" class="govuk-table__header">Type of Record</th>
+                <th scope="col" class="govuk-table__header"></th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                {% for item in data %}
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">
+                            {{item.timeAdded}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.data.name}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.eventDate}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            {{item.formName}}
+                        </td>
+                        <td class="govuk-table__cell">
+                            <a href="/{{item.formUrl}}" target="_blank">View</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+
+    {% else %}
+        <h3 class="lbh-heading-h3">No records found</h3>
+    {% endif %}
+</div>
+{% endblock %}

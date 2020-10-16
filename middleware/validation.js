@@ -15,7 +15,7 @@ const searchValidation = [
     .notEmpty().isInt()
 ]
 
-const searchResidentValidation = [
+const searchPeopleValidation = [
   oneOf(
     [
       check('mosaicId').notEmpty(),
@@ -30,5 +30,5 @@ const searchResidentValidation = [
 
 module.exports = {
   searchValidation,
-  searchResidentValidation
+  searchPeopleValidation
 }

@@ -9,8 +9,8 @@ const cookieParser = require('cookie-parser');
 
 const config = require('../config');
 const indexRoutes = require('../routes/index.route');
-const socialCareRoutes = require('../routes/social-care.route');
-
+const peopleRoutes = require('../routes/people.route');
+const casesRoutes = require('../routes/cases.route');
 
 const logger = require('../middleware/logger');
 const { handleError } = require('../helpers/error');
@@ -79,7 +79,8 @@ module.exports = {
         // Route Handlers
         //-------------------------
 
-        app.use('/socialcare', socialCareRoutes);
+        app.use('/people', peopleRoutes);
+        app.use('/cases', casesRoutes);
 
 
         app.use('/', indexRoutes);

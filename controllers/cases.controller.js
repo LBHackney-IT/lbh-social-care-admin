@@ -73,11 +73,13 @@ module.exports = {
             .then(result => {
                 data = result;
 
+                // Get the persons' name from the first case record
                 const personFullName = `${data[0].firstName} ${data[0].lastName}`;
 
                 return res.render('cases/person-cases-list.njk', {
                     userName: req.auth.userName,
-                    userEmail: req.auth.userEmail, 
+                    userEmail: req.auth.userEmail,
+                    personFullName: personFullName,
                     data: data
                 });
             }) 

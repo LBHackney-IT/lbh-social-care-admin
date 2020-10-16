@@ -10,7 +10,7 @@
     "text": "Back"
   }) }}
 
-  <h1 class="lbh-heading-h1">Resident lookup</h1>
+  <h1 class="lbh-heading-h1">Person lookup</h1>
   <p class="lbh-body-m">Search for resident by Mosaic Id, <strong>or</strong> name, <strong>or</strong> Date of Birth to see if we have a record for them.</p>
 
  {% if query.haserrors %}
@@ -21,7 +21,7 @@
     }) }}
  {% endif %}
 
-  <form action="/socialcare/resident-search" method="post">
+  <form action="/people/search-results" method="post">
 
     <div class="govuk-grid-row row-margin-top-m">
         <div class="govuk-grid-column-one-third">

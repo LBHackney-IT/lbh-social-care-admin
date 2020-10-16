@@ -10,7 +10,7 @@
         "text": "Back"
     }) }}
 
-    <h1 class="lbh-heading-h1">Search results</h1>
+    <h1 class="lbh-heading-h1">People search results</h1>
 
     {% if data | length %}
         <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
@@ -20,18 +20,18 @@
               {{ lbhButton({
                   text: "New search",
                   isSecondary: true,
-                  href: "/socialcare/resident-search"
+                  href: "/people/search"
               })}}
           </div>
         </div>
 
-        <table class="govuk-table lbh-table">
+        <table class="govuk-table lbh-table row-margin-top-l">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Date of Event</th>
-                <th scope="col" class="govuk-table__header">Name of Client</th>
-                <th scope="col" class="govuk-table__header">Email of Worker</th>
-                <th scope="col" class="govuk-table__header">Type of Record</th>
+                <th scope="col" class="govuk-table__header">Person ID</th>
+                <th scope="col" class="govuk-table__header">Name</th>
+                <th scope="col" class="govuk-table__header">Address</th>
+                <th scope="col" class="govuk-table__header">DOB</th>
                 <th scope="col" class="govuk-table__header"></th>
                 </tr>
             </thead>
@@ -39,19 +39,19 @@
                 {% for item in data %}
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">
-                            {{item.eventDate}}
+                            {{item.personId}}
                         </td>
                         <td class="govuk-table__cell">
-                            {{item.clientName}}
+                            {{item.lastName}}, {{item.firstName}}
                         </td>
                         <td class="govuk-table__cell">
-                            {{item.workerEmail}}
+                            {{item.addressList[0].addressLine1}}, {{item.addressList[0].addressLine3}}, {{item.addressList[0].postCode}}
                         </td>
                         <td class="govuk-table__cell">
-                            {{item.recordType}}
+                            {{item.dateOfBirth}}
                         </td>
                         <td class="govuk-table__cell">
-                            <a href="" class="js-cta-btn" id="view-record-{{item.Id}}">View</a>
+                            <a href="/cases/person/{{ item.personId }}" class="js-cta-btn" id="view-record-{{item.Id}}">View</a>
                         </td>
                     </tr>
                 {% endfor %}

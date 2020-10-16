@@ -2,8 +2,7 @@
 
 const validator = require('express-validator');
 const querystring = require('querystring');
-const notesHelper = require('../helpers/notes');
-const SocialCareService = require('../services/social-care.service');
+const PeopleService = require('../services/people.service');
 const { mapFieldErrors, mapDescriptionHtml } = require('../helpers/fieldErrors');
 
 
@@ -28,38 +27,13 @@ const handleFormErrors = (req, res, errors, path) => {
 
 module.exports = {
     /**
-    * @description Render all records for the logged in person
+    * @description Search all people records
     * @param req {object} Express req object 
     * @param res {object} Express res object
     * @param next {object} Express next object
     * @returns {Promise<*>}
     */
-    getMyRecords: async (req, res, next) => {
-        try {
-
-            let params = {
-                userEmail: "TODO: Insert user email address here"
-            }
-
-            // Call relevant service here and render with data
-
-            res.render('socialcare/my-records-list.njk');
-
-        } catch (err) {
-            return next(new Error(err));
-        }
-
-    }, 
-
-
-    /**
-    * @description Search all resident records
-    * @param req {object} Express req object 
-    * @param res {object} Express res object
-    * @param next {object} Express next object
-    * @returns {Promise<*>}
-    */
-   searchResidentRecords: async (req, res, next) => {
+   searchPeopleRecords: async (req, res, next) => {
     try {
 
         res.locals.query = req.body;
@@ -72,7 +46,7 @@ module.exports = {
         const errors = validator.validationResult(req);
 
         if (!errors.isEmpty()) {
-          handleFormErrors(req, res, errors, "/socialcare/resident-search")
+          handleFormErrors(req, res, errors, "/people/search")
         } else {
 
             try {
@@ -81,16 +55,11 @@ module.exports = {
                 /**
                  * @param postcode: string - matching full or partial postcode
                  */
-                await SocialCareService.searchResidentRecords({mosaicId: mosaicId, FirstName: firstName, LastName: lastName})
+                await PeopleService.searchPersonRecords({mosaicId: mosaicId, FirstName: firstName, LastName: lastName})
                 .then(result => {
                     data = result;
 
-                    data.forEach(item => {
-                        // const recDate = new Date(item.DateTimeRecorded);
-                        // item.DateTimeRecorded = recDate.toLocaleDateString();
-                    });
-
-                    return res.render('socialcare//resident-search-results.njk', {data: data});
+                    return res.render('people/people-search-results.njk', {data: data});
                 }) 
 
             } catch (err) {
@@ -102,6 +71,6 @@ module.exports = {
         return next(new Error(err));
     }
 
-}, 
+    } 
 
 }

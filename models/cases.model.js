@@ -20,7 +20,7 @@ class CasesModel {
 
             const headers = {
                 "Content-Type": "application/json",
-                "x-api-key": config.social_care_case_api_key
+                "x-api-key": config.social_care_records_api_key
             };
 
             await axios.get(config.cases_api_url, {

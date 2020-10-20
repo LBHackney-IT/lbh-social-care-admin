@@ -66,20 +66,20 @@ module.exports = {
         try {
             let data = [];
 
+            const searchParams = {
+                mosaic_id: req.params.person_id
+            }
+
             /**
-             * @param person_id: string - persons mosaic id
+             * @param searchParams: object - search parameters
              */
-            await CasesService.getCaseRecords(req.params.person_id)
+            await CasesService.getCaseRecords(searchParams)
             .then(result => {
                 data = result;
-
-                // Get the persons' name from the first case record
-                const personFullName = `${data[0].firstName} ${data[0].lastName}`;
 
                 return res.render('cases/person-cases-list.njk', {
                     userName: req.auth.userName,
                     userEmail: req.auth.userEmail,
-                    personFullName: personFullName,
                     data: data
                 });
             }) 

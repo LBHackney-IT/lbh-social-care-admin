@@ -51,7 +51,7 @@
                             {{item.addressList[0].addressLine1}}, {{item.addressList[0].addressLine3}}, {{item.addressList[0].postCode}}
                         </td>
                         <td class="govuk-table__cell">
-                            {{item.dateOfBirth}}
+                            {{item.dob_date}}
                         </td>
                         <td class="govuk-table__cell">
                             <a href="/cases/person/{{ item.personId }}" class="js-cta-btn" id="view-record-{{item.Id}}">View</a>
@@ -70,7 +70,7 @@
                 {{ lbhButton({
                     text: "New search",
                     isSecondary: true,
-                    href: "/search"
+                    href: "/people/search"
                 })}}
             </div>
         </div>

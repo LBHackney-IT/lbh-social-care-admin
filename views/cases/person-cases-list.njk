@@ -9,21 +9,19 @@
 
 <div id="top">
     {{ lbhBackLink({
-        "href": "/",
+        "href": "/people/search-results",
         "text": "Back"
     }) }}
 
     {% if data | length %}
-        <h1 class="lbh-heading-h1">Records for {{ personFullName }}</h1>
+        <h1 class="lbh-heading-h1">Records for {{ data.personFullName }}</h1>
 
         <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
 
         <table class="govuk-table lbh-table row-margin-top-l">
             <thead class="govuk-table__head">
                 <tr class="govuk-table__row">
-                <th scope="col" class="govuk-table__header">Time Added</th>
-                <th scope="col" class="govuk-table__header">Name of Client</th>
-                <th scope="col" class="govuk-table__header">Date of Event</th>
+                <th scope="col" class="govuk-table__header">Officer Email</th>
                 <th scope="col" class="govuk-table__header">Type of Record</th>
                 <th scope="col" class="govuk-table__header"></th>
                 </tr>
@@ -32,19 +30,13 @@
                 {% for item in data %}
                     <tr class="govuk-table__row">
                         <td class="govuk-table__cell">
-                            {{item.timeAdded}}
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{item.data.name}}
-                        </td>
-                        <td class="govuk-table__cell">
-                            {{item.eventDate}}
+                            {{item.officerEmail}}
                         </td>
                         <td class="govuk-table__cell">
                             {{item.formName}}
                         </td>
                         <td class="govuk-table__cell">
-                            <a href="/{{item.formUrl}}" target="_blank">View</a>
+                            <a href="{{item.caseFormUrl}}" target="_blank">View</a>
                         </td>
                     </tr>
                 {% endfor %}

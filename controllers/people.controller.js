@@ -38,10 +38,14 @@ module.exports = {
 
         res.locals.query = req.body;
 
-        const mosaicId = req.body.mosaicId;
-        const firstName = req.body.firstName;
-        const lastName = req.body.lastName;
-        //  add DOB fields
+        const searchParams = {
+            person_id: req.body.mosaicId,
+            first_name: req.body.firstName,
+            last_name: req.body.lastName
+        }
+
+        
+        //  TO DO : add DOB fields
 
         const errors = validator.validationResult(req);
 
@@ -53,9 +57,9 @@ module.exports = {
                 let data = [];
 
                 /**
-                 * @param postcode: string - matching full or partial postcode
+                 * @param searchParams: object - search parameters
                  */
-                await PeopleService.searchPersonRecords({mosaicId: mosaicId, FirstName: firstName, LastName: lastName})
+                await PeopleService.searchPersonRecords(searchParams)
                 .then(result => {
                     data = result;
 

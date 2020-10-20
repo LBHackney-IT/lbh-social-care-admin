@@ -13,10 +13,11 @@ module.exports = {
     local_is_admin: process.env.LOCAL_IS_ADMIN || false,
     ga_ua: process.env.GA_UA,
 
-    social_care_case_api_key: process.env.SOCIAL_CARE_CASE_API_KEY,
+    social_care_records_api_url: process.env.SOCIAL_CARE_RECORDS_API_URL,
+    social_care_records_api_key: process.env.SOCIAL_CARE_RECORDS_API_KEY,
 
-    cases_api_url: process.env.CASES_API_URL,
-    people_api_url: process.env.PEOPLE_API_URL,
+    cases_api_url: `${process.env.SOCIAL_CARE_RECORDS_API_URL}/${process.env.CASES_API_ENDPOINT}`,
+    people_api_url: `${process.env.SOCIAL_CARE_RECORDS_API_URL}/${process.env.PEOPLE_API_ENDPOINT}`,
     
     authorised_admin_group: process.env.AUTHORISED_ADMIN_GROUP,
     token_name: process.env.TOKEN_NAME,

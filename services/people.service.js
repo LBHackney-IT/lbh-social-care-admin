@@ -16,7 +16,13 @@ class PeopleService {
 
             await PeopleModel.getPersonRecords(params)
             .then ( (result) => {
-                data = result.data.people || [];
+                data = result.data.residents || [];
+
+                data.forEach(item => {
+                    const formattedDOBDate = dateHelper.convertDate(item.dateOfBirth);
+
+                    item.dob_date = formattedDOBDate.concatenated;
+                });
             });
 
             return data;

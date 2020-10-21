@@ -13,9 +13,9 @@
         "text": "Back"
     }) }}
 
-    {% if data | length %}
-        <h1 class="lbh-heading-h2">Records created by : {{ userEmail }}</h1>
+    <h1 class="lbh-heading-h2">Records created by: {{ userEmail }}</h1>
 
+    {% if data | length %}
         <p class="lbh-body-m">Displaying {{ data | length}} record(s)</p>
 
         <table class="govuk-table lbh-table row-margin-top-l">

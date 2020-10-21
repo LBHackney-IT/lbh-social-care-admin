@@ -17,7 +17,7 @@ const isAuthorised = (req, res, next) => {
     return next();
   };
 
-  res.locals.returnURL = req.protocol + '://' + req.hostname + (config.port && `:${config.port}`);
+  res.locals.returnURL = req.protocol + '://' + req.hostname;
 
   if (token) {
     let payload = null;

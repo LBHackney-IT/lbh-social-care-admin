@@ -38,14 +38,18 @@ module.exports = {
 
         res.locals.query = req.body;
 
+        const dobYear = req.body.dob_year && req.body.dob_year;
+        const dobMonth = req.body.dob_month && req.body.dob_month;
+        const dobDay = req.body.dob_day && req.body.dob_day;
+
+        const dob = [dobYear, dobMonth, dobDay].join('-');
+
         const searchParams = {
             person_id: req.body.mosaicId,
             first_name: req.body.firstName,
-            last_name: req.body.lastName
+            last_name: req.body.lastName,
+            date_of_birth: dob.length > 2 ? dob : ''
         }
-
-        
-        //  TO DO : add DOB fields
 
         const errors = validator.validationResult(req);
 
